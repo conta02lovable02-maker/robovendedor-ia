@@ -638,10 +638,10 @@ function Pricing() {
                 style={{ fontSize: "clamp(2.5rem, 10vw, 4rem)" }}
                 translate="no"
               >
-                R$ 279,80
+                R$ 397,80
               </p>
               <p className="mt-2 text-sm text-muted-foreground" translate="no">
-                ou 12x de R$ 24,75 no cartão
+                ou 12x de R$ 33,15 no cartão
               </p>
 
               <div className="mt-5 flex w-full max-w-sm items-start gap-3 rounded-xl border border-success/40 bg-success/10 px-4 py-3 text-left">
