@@ -626,7 +626,7 @@ function Pricing() {
               <div className="mt-5 flex items-baseline justify-center gap-2">
                 <span className="text-xs uppercase tracking-wider text-muted-foreground">De</span>
                 <span className="text-xl font-bold text-muted-foreground line-through decoration-destructive/70 decoration-2 sm:text-2xl" translate="no">
-                  R$ 997,00
+                  R$ 1.200,00
                 </span>
               </div>
 
