@@ -616,7 +616,7 @@ function Pricing() {
             <div className="relative flex flex-col items-center text-center">
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <span className="rounded-md bg-destructive/20 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-destructive sm:text-[11px]">
-                  -80% HOJE
+                  -84% HOJE
                 </span>
                 <span className="inline-flex items-center gap-1.5 rounded-md bg-gold/15 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-gold sm:text-[11px]">
                   <Clock className="h-3 w-3" /> Oferta por tempo limitado
@@ -638,10 +638,10 @@ function Pricing() {
                 style={{ fontSize: "clamp(2.5rem, 10vw, 4rem)" }}
                 translate="no"
               >
-                R$ 397,80
+                R$ 197,80
               </p>
               <p className="mt-2 text-sm text-muted-foreground" translate="no">
-                ou 12x de R$ 33,15 no cartão
+                ou 12x de R$ 16,41 no cartão
               </p>
 
               <div className="mt-5 flex w-full max-w-sm items-start gap-3 rounded-xl border border-success/40 bg-success/10 px-4 py-3 text-left">
@@ -662,7 +662,7 @@ function Pricing() {
 
               <p className="mt-4 text-xs font-semibold text-foreground/70">
                 💰 Você economiza{" "}
-                <span className="text-gradient" translate="no">R$ 799,20</span> hoje
+                <span className="text-gradient" translate="no">R$ 997,90</span> hoje
               </p>
             </div>
           </div>
