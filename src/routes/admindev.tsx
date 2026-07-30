@@ -592,8 +592,8 @@ function SettingsPanelInner({
   current, pixelId, setPixelId, checkoutUrl, setCheckoutUrl, saved, setSaved,
 }: any) {
 
-  const save = () => {
-    saveConfig({
+  const save = async () => {
+    await saveConfig({
       pixelId: pixelId.trim(),
       checkoutUrl: checkoutUrl.trim() || DEFAULT_CONFIG.checkoutUrl,
     });
@@ -641,7 +641,7 @@ function SettingsPanelInner({
           type="url"
           value={checkoutUrl}
           onChange={(e) => setCheckoutUrl(e.target.value)}
-          placeholder="https://pay.kiwify.com.br/ECJMIKj"
+          placeholder="https://pay.kiwify.com.br/..."
           className="mt-2 w-full rounded-lg border border-white/15 bg-background/60 px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-cta"
         />
         <p className="mt-2 truncate text-xs text-muted-foreground">
