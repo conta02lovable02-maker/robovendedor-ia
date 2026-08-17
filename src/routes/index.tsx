@@ -86,7 +86,8 @@ function Hero() {
 
             Você não precisa de cursos de 100 horas, gerenciadores confusos ou agências que sugam seu dinheiro.
             Minha <span translate="no">IA</span> configura, otimiza e roda suas campanhas no piloto automático para trazer clientes reais
-            para o seu negócio — enquanto você foca no que realmente importa.
+            para o seu negócio, seja ele uma loja física, uma prestação de serviço, um produto digital ou você vendendo
+            como afiliado — enquanto você foca no que realmente importa.
           </p>
 
           <div className="mt-8 w-full max-w-md">
@@ -290,6 +291,7 @@ function Manifesto() {
             A internet está cheia de "gurus" prometendo que você vai comprar uma Ferrari no mês que vem.
             <strong className="text-foreground"> Nós não.</strong> Nosso <span translate="no">Robô de Vendas</span> foi criado para pessoas normais
             que querem sair do sufoco, deixar a <span translate="no">CLT</span> para trás e ter liberdade de trabalhar de onde quiserem.
+            Empreendedor, empresário, autônomo, prestador de serviço ou afiliado: não é ferramenta de nicho — é pra quem vende algo.
           </p>
           <p>
             Acreditamos em construir estabilidade. Com tempo e dedicação usando nossa <span translate="no">IA</span>, construir uma renda extra real de
@@ -617,6 +619,8 @@ function FAQ() {
     { q: "Em quanto tempo vou saber como fazer dinheiro de verdade?", a: "Fugimos de falsas promessas. Os resultados dependem do seu nicho e produto, mas nossa ferramenta elimina a curva de aprendizado de meses de gestão de tráfego, acelerando seus resultados reais desde a primeira semana." },
     { q: "Preciso ter site ou loja online?", a: "Não. O robô funciona com links de WhatsApp, páginas de venda, perfis sociais ou qualquer destino que você queira receber tráfego qualificado." },
     { q: "Posso cancelar quando quiser?", a: "Sim. Sem fidelidade, sem letras miúdas. Cancela com 1 clique direto no painel." },
+    { q: "Serve pra qualquer tipo de negócio ou só e-commerce?", a: "Serve pra qualquer tipo de venda: produto físico (loja, mercado, padaria, restaurante), produto digital (curso, ebook, mentoria), serviço (obra, limpeza, saúde, consultoria, advocacia) e também pra afiliados. Você diz o que vende e o robô adapta a campanha ao seu negócio." },
+    { q: "O robô já vem com curso de vendas?", a: "Vem sim. O Seller School está incluso dentro do próprio app: um passo a passo que te ensina a vender do zero, seja você iniciante, afiliado ou empresa. Você não precisa comprar nenhum curso externo." },
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -766,6 +770,8 @@ function Pricing() {
     "Suporte Premium Humanizado",
     "Otimização automática por IA 24/7",
     "Treinamento em vídeo passo a passo",
+    "Seller School incluso",
+    "Suporte via WhatsApp incluso",
     "Cancelamento fácil a qualquer momento",
   ];
   return (
