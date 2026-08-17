@@ -310,10 +310,14 @@ function Manifesto() {
 
 function ForWhom() {
   const baseCards = [
-    { key: "fisico", icon: Store, t: "Negócios Físicos", d: "Lojas, clínicas e restaurantes que precisam atrair clientes da sua região todos os dias." },
+    { key: "fisico", icon: Store, t: "Negócios Físicos", d: "Lojas, mercados, padarias, clínicas e restaurantes que precisam atrair clientes da região todos os dias." },
     { key: "ecom", icon: Package, t: "E-commerce / Dropshipping", d: "Venda produtos escaláveis sem precisar entender de bloqueios, BM ou contas comerciais." },
-    { key: "digital", icon: Smartphone, t: "Produtos Digitais", d: "Otimize o tráfego para suas páginas de vendas de infoprodutos de forma contínua." },
-    { key: "whats", icon: MessageCircle, t: "Vendas pelo WhatsApp", d: "Quer o telefone tocando com gente interessada? O robô envia o público certo direto pro chat." },
+    { key: "digital", icon: Smartphone, t: "Produtos Digitais / Infoprodutos", d: "Cursos, ebooks e mentorias vendendo no automático, mesmo pra quem está lançando o primeiro produto." },
+    { key: "whats", icon: MessageCircle, t: "Vendas pelo WhatsApp", d: "Quer o telefone tocando com gente interessada? O robô manda o público certo direto pro chat." },
+    { key: "servico", icon: Wrench, t: "Prestadores de Serviço", d: "Pedreiros, eletricistas, diaristas, encanadores e qualquer serviço que depende de clientes novos toda semana." },
+    { key: "liberal", icon: Scale, t: "Profissionais Liberais", d: "Advogados, médicos, dentistas e consultores que querem agenda cheia sem depender de indicação." },
+    { key: "alto", icon: Home, t: "Imóveis e Bens de Alto Valor", d: "Corretores e lojas de eletrodomésticos, móveis e eletrônicos vendendo para público qualificado." },
+    { key: "afiliado", icon: Repeat, t: "Afiliados e Quem Está Começando do Zero", d: "Nunca vendeu nada? Já é afiliado e quer vender mais? O robô simplifica pra quem está começando ou quer escalar." },
   ];
   const answers = useQuizAnswers();
   const cards = useMemo(() => {
@@ -332,9 +336,11 @@ function ForWhom() {
     <section id="para-quem" className="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
       <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
         <h2 className="fluid-h2 font-extrabold">
-          Para quem é esta <span className="text-gradient">ferramenta?</span>
+          Se você vende <span className="text-gradient">ALGO</span>, o robô trabalha pra você
         </h2>
-        <p className="mt-3 text-muted-foreground">Se você vende algo, o robô trabalha para você.</p>
+        <p className="mt-3 text-muted-foreground">
+          Físico, digital, serviço ou produto — não importa o que você vende, o robô se adapta ao seu negócio.
+        </p>
       </motion.div>
       <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
         {cards.map((c, i) => {
