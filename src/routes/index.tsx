@@ -4,6 +4,7 @@ import {
   Store, Package, Smartphone, MessageCircle, Star, Check, X,
   ArrowRight, Sparkles, Zap, Target, Shield, Clock, TrendingUp,
   ChevronDown, Bot, Heart, Users, Lock, Headphones, RefreshCw,
+  Wrench, Scale, Home, Repeat, GraduationCap, Rocket, PenLine, BarChart3, Medal,
 } from "lucide-react";
 
 import { useCallback, useMemo, useState } from "react";
@@ -52,9 +53,12 @@ function Index() {
           <HowItWorks />
           <Manifesto />
           <ForWhom />
+          <FitCheck />
           <Benefits />
+          <Bonuses />
           <Testimonials />
           <FAQ />
+          <ThreeChoices />
           <Pricing />
           <Footer />
         </>
@@ -82,7 +86,8 @@ function Hero() {
 
             Você não precisa de cursos de 100 horas, gerenciadores confusos ou agências que sugam seu dinheiro.
             Minha <span translate="no">IA</span> configura, otimiza e roda suas campanhas no piloto automático para trazer clientes reais
-            para o seu negócio — enquanto você foca no que realmente importa.
+            para o seu negócio, seja ele uma loja física, uma prestação de serviço, um produto digital ou você vendendo
+            como afiliado — enquanto você foca no que realmente importa.
           </p>
 
           <div className="mt-8 w-full max-w-md">
@@ -286,6 +291,7 @@ function Manifesto() {
             A internet está cheia de "gurus" prometendo que você vai comprar uma Ferrari no mês que vem.
             <strong className="text-foreground"> Nós não.</strong> Nosso <span translate="no">Robô de Vendas</span> foi criado para pessoas normais
             que querem sair do sufoco, deixar a <span translate="no">CLT</span> para trás e ter liberdade de trabalhar de onde quiserem.
+            Empreendedor, empresário, autônomo, prestador de serviço ou afiliado: não é ferramenta de nicho — é pra quem vende algo.
           </p>
           <p>
             Acreditamos em construir estabilidade. Com tempo e dedicação usando nossa <span translate="no">IA</span>, construir uma renda extra real de
@@ -306,10 +312,14 @@ function Manifesto() {
 
 function ForWhom() {
   const baseCards = [
-    { key: "fisico", icon: Store, t: "Negócios Físicos", d: "Lojas, clínicas e restaurantes que precisam atrair clientes da sua região todos os dias." },
+    { key: "fisico", icon: Store, t: "Negócios Físicos", d: "Lojas, mercados, padarias, clínicas e restaurantes que precisam atrair clientes da região todos os dias." },
     { key: "ecom", icon: Package, t: "E-commerce / Dropshipping", d: "Venda produtos escaláveis sem precisar entender de bloqueios, BM ou contas comerciais." },
-    { key: "digital", icon: Smartphone, t: "Produtos Digitais", d: "Otimize o tráfego para suas páginas de vendas de infoprodutos de forma contínua." },
-    { key: "whats", icon: MessageCircle, t: "Vendas pelo WhatsApp", d: "Quer o telefone tocando com gente interessada? O robô envia o público certo direto pro chat." },
+    { key: "digital", icon: Smartphone, t: "Produtos Digitais / Infoprodutos", d: "Cursos, ebooks e mentorias vendendo no automático, mesmo pra quem está lançando o primeiro produto." },
+    { key: "whats", icon: MessageCircle, t: "Vendas pelo WhatsApp", d: "Quer o telefone tocando com gente interessada? O robô manda o público certo direto pro chat." },
+    { key: "servico", icon: Wrench, t: "Prestadores de Serviço", d: "Pedreiros, eletricistas, diaristas, encanadores e qualquer serviço que depende de clientes novos toda semana." },
+    { key: "liberal", icon: Scale, t: "Profissionais Liberais", d: "Advogados, médicos, dentistas e consultores que querem agenda cheia sem depender de indicação." },
+    { key: "alto", icon: Home, t: "Imóveis e Bens de Alto Valor", d: "Corretores e lojas de eletrodomésticos, móveis e eletrônicos vendendo para público qualificado." },
+    { key: "afiliado", icon: Repeat, t: "Afiliados e Quem Está Começando do Zero", d: "Nunca vendeu nada? Já é afiliado e quer vender mais? O robô simplifica pra quem está começando ou quer escalar." },
   ];
   const answers = useQuizAnswers();
   const cards = useMemo(() => {
@@ -328,9 +338,11 @@ function ForWhom() {
     <section id="para-quem" className="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24">
       <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
         <h2 className="fluid-h2 font-extrabold">
-          Para quem é esta <span className="text-gradient">ferramenta?</span>
+          Se você vende <span className="text-gradient">ALGO</span>, o robô trabalha pra você
         </h2>
-        <p className="mt-3 text-muted-foreground">Se você vende algo, o robô trabalha para você.</p>
+        <p className="mt-3 text-muted-foreground">
+          Físico, digital, serviço ou produto — não importa o que você vende, o robô se adapta ao seu negócio.
+        </p>
       </motion.div>
       <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
         {cards.map((c, i) => {
@@ -371,6 +383,192 @@ function ForWhom() {
 }
 
 function Benefits() {
+  return <BenefitsInner />;
+}
+
+function FitCheck() {
+  const yes = [
+    "Nunca vendeu nada e quer começar do jeito certo, sem enrolação",
+    "Já é afiliado ou produtor e quer vender mais sem depender só de indicação",
+    "Presta serviço (limpeza, obra, consultoria, saúde) e precisa de cliente novo toda semana",
+    "Tem loja física, e-commerce ou vende produto digital e quer parar de deixar dinheiro na mesa",
+    "Quer ter controle do processo sem depender de agência cara",
+  ];
+  const no = [
+    "Quer resultado sem configurar nada nem seguir o passo a passo",
+    "Está buscando ficar rico da noite pro dia",
+    "Não está disposto a investir nem um real em anúncio",
+    "Prefere continuar pagando caro por uma agência sem saber o que ela faz",
+  ];
+  return (
+    <section id="para-quem-nao-e" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
+      <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+        <h2 className="fluid-h2 font-extrabold">
+          Para quem é <span className="text-gradient">e para quem não é</span>
+        </h2>
+        <p className="mt-3 text-muted-foreground">Seja honesto com você mesmo antes de ativar o robô.</p>
+      </motion.div>
+
+      <div className="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
+        <motion.div
+          {...fadeUp}
+          whileHover={{ y: -6, scale: 1.015 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="glow-green relative rounded-2xl border-2 p-5 sm:p-7"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.32 0.14 155 / 0.55), oklch(0.22 0.08 160 / 0.5))",
+          }}
+        >
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-success/25 px-3 py-1 text-xs font-semibold text-success ring-1 ring-success/50">
+            <Check className="h-3.5 w-3.5" /> O robô é pra você que:
+          </div>
+          <ul className="space-y-4">
+            {yes.map((t) => (
+              <li key={t} className="flex gap-3">
+                <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-success" />
+                <span className="text-sm font-medium text-foreground">{t}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+
+        <motion.div {...fadeUp} className="glass rounded-2xl p-5 sm:p-7">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-destructive/15 px-3 py-1 text-xs font-semibold text-destructive">
+            <X className="h-3.5 w-3.5" /> O robô NÃO é pra você que:
+          </div>
+          <ul className="space-y-4">
+            {no.map((t) => (
+              <li key={t} className="flex gap-3">
+                <X className="mt-0.5 h-5 w-5 flex-shrink-0 text-destructive" />
+                <span className="text-sm text-muted-foreground">{t}</span>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function Bonuses() {
+  const items = [
+    { icon: GraduationCap, t: "Seller School", d: "Curso dentro do próprio app te ensinando a vender passo a passo — serve pra iniciante, afiliado ou empresa, sem precisar fazer curso externo.", v: "Incluso" },
+    { icon: Headphones, t: "Suporte via WhatsApp", d: "Fale direto com nosso time sempre que precisar, sem ticket, sem espera.", v: "R$ 97,00" },
+    { icon: Rocket, t: "Turbinar Campanha", d: "Um clique para acelerar o alcance da sua campanha quando ela está performando bem.", v: "R$ 47,00" },
+    { icon: PenLine, t: "Copy Inteligente", d: "A IA escreve o texto do seu anúncio automaticamente, testado para converter, pra qualquer tipo de negócio.", v: "R$ 97,00" },
+    { icon: BarChart3, t: "Relatório de Campanhas", d: "Baixe o relatório completo de performance para acompanhar ou mostrar resultado.", v: "R$ 27,00" },
+    { icon: Medal, t: "Selo de Prioridade", d: "Suas campanhas entram na frente na fila de ativação do robô.", v: "R$ 47,00" },
+  ];
+  return (
+    <section id="bonus" className="relative py-16 sm:py-24">
+      <div className="absolute inset-0 bg-grid opacity-20" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+        <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+          <h2 className="fluid-h2 font-extrabold">
+            Ao ativar o robô hoje, <span className="text-gradient">você também leva:</span>
+          </h2>
+        </motion.div>
+        <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+          {items.map((it, i) => (
+            <motion.div
+              key={it.t}
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="glow-yellow relative rounded-2xl border-2 bg-white/[0.03] p-5 backdrop-blur-md sm:p-6"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <it.icon className="h-7 w-7 text-gold" />
+                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs font-bold text-gold ring-1 ring-white/10">{it.v}</span>
+              </div>
+              <h3 className="mt-4 font-bold text-foreground" translate="no">{it.t}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{it.d}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          {...fadeUp}
+          className="relative mx-auto mt-10 max-w-2xl overflow-hidden rounded-2xl border border-[oklch(0.65_0.27_300/0.4)] bg-gradient-to-br from-[oklch(0.22_0.06_280/0.7)] to-[oklch(0.18_0.04_270/0.7)] p-5 text-center sm:p-8"
+        >
+          <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[oklch(0.74_0.22_50/0.25)] blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[oklch(0.65_0.27_300/0.25)] blur-3xl" />
+          <p className="relative text-sm text-muted-foreground sm:text-base">
+            <span translate="no">Robô de Vendas (R$ 1.200,00)</span> + todos os bônus acima ={" "}
+            <span className="font-extrabold text-foreground" translate="no">R$ 1.515,00</span> em valor
+          </p>
+          <p className="relative mt-3 text-base font-extrabold text-foreground sm:text-lg">
+            Hoje, tudo isso sai por{" "}
+            <span className="text-gradient" translate="no">R$ 197,00</span> (primeira parcela) +{" "}
+            <span className="text-gradient" translate="no">R$ 97,00/mês</span> a partir do 2º mês
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+function ThreeChoices() {
+  const options = [
+    { icon: X, t: "Continuar perdendo dinheiro", d: "Testando anúncio sozinho, sem saber o que está fazendo.", tone: "bad" as const },
+    { icon: Clock, t: "Contratar uma agência cara", d: "E ficar sem controle nem clareza do que estão fazendo com seu dinheiro.", tone: "bad" as const },
+    { icon: Check, t: "Ativar o robô agora", d: "Com Seller School, suporte via WhatsApp e prioridade na fila inclusos, e começar a vender ainda essa semana — seja você iniciante, afiliado, prestador de serviço ou dono de negócio.", tone: "good" as const },
+  ];
+  return (
+    <section id="escolhas" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
+      <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
+        <h2 className="fluid-h2 font-extrabold">
+          Chegou até aqui? Agora você tem <span className="text-gradient">3 opções:</span>
+        </h2>
+      </motion.div>
+      <div className="mt-10 grid gap-5 sm:mt-12 md:grid-cols-3 md:gap-6">
+        {options.map((o, i) =>
+          o.tone === "good" ? (
+            <motion.div
+              key={o.t}
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              whileHover={{ y: -6, scale: 1.015 }}
+              className="glow-green relative rounded-2xl border-2 p-5 sm:p-7"
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.32 0.14 155 / 0.55), oklch(0.22 0.08 160 / 0.5))",
+              }}
+            >
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-success/25 px-3 py-1 text-xs font-semibold text-success ring-1 ring-success/50">
+                <o.icon className="h-3.5 w-3.5" /> Opção {i + 1}
+              </div>
+              <h3 className="text-base font-bold text-foreground sm:text-lg">{o.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/90">{o.d}</p>
+            </motion.div>
+          ) : (
+            <motion.div
+              key={o.t}
+              {...fadeUp}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="glass rounded-2xl p-5 sm:p-7"
+            >
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-destructive/15 px-3 py-1 text-xs font-semibold text-destructive">
+                <o.icon className="h-3.5 w-3.5" /> Opção {i + 1}
+              </div>
+              <h3 className="text-base font-semibold text-foreground/90 sm:text-lg">{o.t}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{o.d}</p>
+            </motion.div>
+          ),
+        )}
+      </div>
+      <div className="mx-auto mt-10 w-full max-w-md">
+        <CheckoutButton variant="success" size="lg" label="tres-opcoes" scrollTo="#preco" pulse>
+          Quero Ativar o Robô Agora
+        </CheckoutButton>
+      </div>
+    </section>
+  );
+}
+
+function BenefitsInner() {
   const items = [
     { icon: Clock, t: "Configuração em 5 minutos", d: "Sem cursos, sem semanas de estudo." },
     { icon: Shield, t: "Você controla seu orçamento", d: "Comece com pouco, escale com confiança." },
@@ -421,6 +619,8 @@ function FAQ() {
     { q: "Em quanto tempo vou saber como fazer dinheiro de verdade?", a: "Fugimos de falsas promessas. Os resultados dependem do seu nicho e produto, mas nossa ferramenta elimina a curva de aprendizado de meses de gestão de tráfego, acelerando seus resultados reais desde a primeira semana." },
     { q: "Preciso ter site ou loja online?", a: "Não. O robô funciona com links de WhatsApp, páginas de venda, perfis sociais ou qualquer destino que você queira receber tráfego qualificado." },
     { q: "Posso cancelar quando quiser?", a: "Sim. Sem fidelidade, sem letras miúdas. Cancela com 1 clique direto no painel." },
+    { q: "Serve pra qualquer tipo de negócio ou só e-commerce?", a: "Serve pra qualquer tipo de venda: produto físico (loja, mercado, padaria, restaurante), produto digital (curso, ebook, mentoria), serviço (obra, limpeza, saúde, consultoria, advocacia) e também pra afiliados. Você diz o que vende e o robô adapta a campanha ao seu negócio." },
+    { q: "O robô já vem com curso de vendas?", a: "Vem sim. O Seller School está incluso dentro do próprio app: um passo a passo que te ensina a vender do zero, seja você iniciante, afiliado ou empresa. Você não precisa comprar nenhum curso externo." },
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
@@ -570,6 +770,8 @@ function Pricing() {
     "Suporte Premium Humanizado",
     "Otimização automática por IA 24/7",
     "Treinamento em vídeo passo a passo",
+    "Seller School incluso",
+    "Suporte via WhatsApp incluso",
     "Cancelamento fácil a qualquer momento",
   ];
   return (
