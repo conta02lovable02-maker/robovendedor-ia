@@ -4,6 +4,7 @@ import {
   Store, Package, Smartphone, MessageCircle, Star, Check, X,
   ArrowRight, Sparkles, Zap, Target, Shield, Clock, TrendingUp,
   ChevronDown, Bot, Heart, Users, Lock, Headphones, RefreshCw,
+  Wrench, Scale, Home, Repeat, GraduationCap, Rocket, PenLine, BarChart3, Medal,
 } from "lucide-react";
 
 import { useCallback, useMemo, useState } from "react";
@@ -52,9 +53,12 @@ function Index() {
           <HowItWorks />
           <Manifesto />
           <ForWhom />
+          <FitCheck />
           <Benefits />
+          <Bonuses />
           <Testimonials />
           <FAQ />
+          <ThreeChoices />
           <Pricing />
           <Footer />
         </>
