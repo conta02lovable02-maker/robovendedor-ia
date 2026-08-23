@@ -7,7 +7,7 @@ import {
   Wrench, Scale, Home, Repeat, GraduationCap, Rocket, PenLine, BarChart3, Medal,
 } from "lucide-react";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { NotificationBar, TopNotificationBar } from "@/components/NotificationBar";
 import { DashboardMock } from "@/components/DashboardMock";
@@ -16,8 +16,10 @@ import { CountdownTimer } from "@/components/CountdownTimer";
 import { TestimonialsCarousel, type Testimonial } from "@/components/TestimonialsCarousel";
 import { PixelAndTracking } from "@/components/PixelScript";
 import { CountUp } from "@/components/CountUp";
-import { VideoQuizGate } from "@/components/VideoQuizGate";
 import { useQuizAnswers } from "@/lib/quiz-state";
+import { useSiteConfig } from "@/lib/site-config";
+import { track } from "@/lib/analytics";
+import roboMascote from "@/assets/robo-mascote.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -37,32 +39,25 @@ const fadeUp = {
 };
 
 function Index() {
-  const [gateDone, setGateDone] = useState(false);
-  const handleGateFinish = useCallback(() => setGateDone(true), []);
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <VideoQuizGate onFinish={handleGateFinish} />
       <PixelAndTracking />
-      {gateDone && (
-        <>
-          <SiteHeader />
-          <TopNotificationBar />
-          <Hero />
-          <NotificationBar />
-          <ComparisonSection />
-          <HowItWorks />
-          <Manifesto />
-          <ForWhom />
-          <FitCheck />
-          <Benefits />
-          <Bonuses />
-          <Testimonials />
-          <FAQ />
-          <ThreeChoices />
-          <Pricing />
-          <Footer />
-        </>
-      )}
+      <SiteHeader />
+      <TopNotificationBar />
+      <Hero />
+      <NotificationBar />
+      <ComparisonSection />
+      <HowItWorks />
+      <Manifesto />
+      <ForWhom />
+      <FitCheck />
+      <Benefits />
+      <Bonuses />
+      <Testimonials />
+      <FAQ />
+      <ThreeChoices />
+      <Pricing />
+      <Footer />
     </div>
   );
 }
@@ -72,15 +67,26 @@ function Hero() {
   return (
     <section className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
       <div className="absolute inset-0 bg-grid opacity-40" />
+
+      {/* Robozinho flutuante — decorativo, não interfere em cliques */}
+      <motion.img
+        src={roboMascote}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute right-3 top-3 h-12 w-12 select-none opacity-90 sm:right-6 sm:top-6 sm:h-16 sm:w-16 md:h-20 md:w-20"
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 sm:py-20 md:py-28 lg:grid-cols-2">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
           <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-foreground/90 sm:text-sm md:text-base">
             <Sparkles className="h-4 w-4 text-gold md:h-5 md:w-5" />
-            A verdade cruel sobre anúncios que os gurus escondem
+            Esse é o método que não querem que você saiba
           </span>
           <h1 className="fluid-h1 mt-5 font-extrabold tracking-tight">
-            A Verdade Cruel Sobre Anúncios Online Que Os Gurus Escondem De Você{" "}
-            <span className="text-gradient">(e como virar o jogo nos próximos 5 minutos)</span>.
+            A Verdade Atual Sobre Vender Online Que Os Gurus dos Cursos Escondem De Você{" "}
+            <span className="text-gradient">(e como virar o jogo em 5 minutos)</span>.
           </h1>
           <p className="fluid-lead mt-5 max-w-xl text-muted-foreground">
 
@@ -280,6 +286,17 @@ function Manifesto() {
             "radial-gradient(circle at 20% 30%, oklch(0.4 0.22 300 / 0.5), transparent 45%), radial-gradient(circle at 80% 70%, oklch(0.4 0.2 50 / 0.4), transparent 50%)",
         }}
       />
+
+      {/* Robozinho flutuante — decorativo, não interfere em cliques */}
+      <motion.img
+        src={roboMascote}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute left-3 top-3 h-10 w-10 select-none opacity-80 sm:left-8 sm:top-8 sm:h-14 sm:w-14 md:h-16 md:w-16"
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
+      />
+
       <motion.div {...fadeUp} className="relative mx-auto max-w-3xl px-4 text-center sm:px-6">
         <span className="text-7xl leading-none text-gradient">"</span>
         <h2 className="fluid-h2 -mt-6 font-extrabold">
@@ -453,12 +470,12 @@ function FitCheck() {
 
 function Bonuses() {
   const items = [
-    { icon: GraduationCap, t: "Seller School", d: "Curso dentro do próprio app te ensinando a vender passo a passo — serve pra iniciante, afiliado ou empresa, sem precisar fazer curso externo.", v: "Incluso" },
-    { icon: Headphones, t: "Suporte via WhatsApp", d: "Fale direto com nosso time sempre que precisar, sem ticket, sem espera.", v: "R$ 97,00" },
-    { icon: Rocket, t: "Turbinar Campanha", d: "Um clique para acelerar o alcance da sua campanha quando ela está performando bem.", v: "R$ 47,00" },
-    { icon: PenLine, t: "Copy Inteligente", d: "A IA escreve o texto do seu anúncio automaticamente, testado para converter, pra qualquer tipo de negócio.", v: "R$ 97,00" },
-    { icon: BarChart3, t: "Relatório de Campanhas", d: "Baixe o relatório completo de performance para acompanhar ou mostrar resultado.", v: "R$ 27,00" },
-    { icon: Medal, t: "Selo de Prioridade", d: "Suas campanhas entram na frente na fila de ativação do robô.", v: "R$ 47,00" },
+    { icon: GraduationCap, t: "Seller School", d: "Curso dentro do próprio app te ensinando a vender passo a passo — serve pra iniciante, afiliado ou empresa, sem precisar fazer curso externo." },
+    { icon: Headphones, t: "Suporte via WhatsApp", d: "Fale direto com nosso time sempre que precisar, sem ticket, sem espera." },
+    { icon: Rocket, t: "Turbinar Campanha", d: "Um clique para acelerar o alcance da sua campanha quando ela está performando bem." },
+    { icon: PenLine, t: "Copy Inteligente", d: "A IA escreve o texto do seu anúncio automaticamente, testado para converter, pra qualquer tipo de negócio." },
+    { icon: BarChart3, t: "Relatório de Campanhas", d: "Baixe o relatório completo de performance para acompanhar ou mostrar resultado." },
+    { icon: Medal, t: "Selo de Prioridade", d: "Suas campanhas entram na frente na fila de ativação do robô." },
   ];
   return (
     <section id="bonus" className="relative py-16 sm:py-24">
@@ -466,7 +483,7 @@ function Bonuses() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
           <h2 className="fluid-h2 font-extrabold">
-            Ao ativar o robô hoje, <span className="text-gradient">você também leva:</span>
+            Ao acessar o robô, <span className="text-gradient">você também desbloqueia:</span>
           </h2>
         </motion.div>
         <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
@@ -481,7 +498,7 @@ function Bonuses() {
             >
               <div className="flex items-start justify-between gap-3">
                 <it.icon className="h-7 w-7 text-gold" />
-                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs font-bold text-gold ring-1 ring-white/10">{it.v}</span>
+                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs font-bold text-gold ring-1 ring-white/10">Dentro do app</span>
               </div>
               <h3 className="mt-4 font-bold text-foreground" translate="no">{it.t}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{it.d}</p>
@@ -496,13 +513,8 @@ function Bonuses() {
           <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[oklch(0.74_0.22_50/0.25)] blur-3xl" />
           <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[oklch(0.65_0.27_300/0.25)] blur-3xl" />
           <p className="relative text-sm text-muted-foreground sm:text-base">
-            <span translate="no">Robô de Vendas (R$ 1.200,00)</span> + todos os bônus acima ={" "}
-            <span className="font-extrabold text-foreground" translate="no">R$ 1.515,00</span> em valor
-          </p>
-          <p className="relative mt-3 text-base font-extrabold text-foreground sm:text-lg">
-            Hoje, tudo isso sai por{" "}
-            <span className="text-gradient" translate="no">R$ 197,00</span> (primeira parcela) +{" "}
-            <span className="text-gradient" translate="no">R$ 97,00/mês</span> a partir do 2º mês
+            <span translate="no">Robô de Vendas</span> + todos os benefícios acima já vêm{" "}
+            <span className="font-extrabold text-foreground">inclusos no seu acesso gratuito</span> — sem custo extra, direto dentro do app.
           </p>
         </motion.div>
       </div>
@@ -763,6 +775,41 @@ function Testimonials() {
   );
 }
 
+function AppAccessQuestion() {
+  const { checkoutUrl } = useSiteConfig();
+  const options = [
+    { key: "5", label: "Uns 5, pra começar com calma" },
+    { key: "15", label: "Uns 15, já quero ver crescimento" },
+    { key: "30", label: "30 ou mais, quero ir com tudo" },
+  ];
+  const handleSelect = (key: string) => {
+    track({ type: "click", label: `access_question_${key}` });
+    window.open(checkoutUrl, "_blank", "noopener,noreferrer");
+  };
+  return (
+    <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-7">
+      <p className="text-center text-xs font-semibold uppercase tracking-wider text-gold">
+        Só uma coisa antes de continuar
+      </p>
+      <h3 className="mt-2 text-center text-lg font-extrabold text-foreground sm:text-xl">
+        Quantos clientes novos você gostaria de receber esse mês?
+      </h3>
+      <div className="mt-5 grid gap-3">
+        {options.map((o) => (
+          <button
+            key={o.key}
+            type="button"
+            onClick={() => handleSelect(o.key)}
+            className="w-full rounded-xl border-2 border-white/10 bg-white/[0.04] px-4 py-4 text-left text-base font-semibold text-foreground/90 transition-colors duration-150 hover:border-[oklch(0.65_0.27_300/0.6)] hover:bg-gradient-to-r hover:from-[oklch(0.65_0.27_300/0.12)] hover:to-[oklch(0.74_0.22_50/0.08)]"
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Pricing() {
   const features = [
     "Acesso ao Painel Simplificado",
@@ -810,61 +857,33 @@ function Pricing() {
           <h3 className="mt-6 text-xl font-extrabold text-foreground sm:mt-0 sm:text-2xl" translate="no">Robô de Vendas Completo</h3>
           <p className="mt-1 text-sm text-muted-foreground">Acesso vitalício à plataforma e atualizações.</p>
 
-          {/* Price anchoring — fully centralized */}
           <div className="relative my-6 overflow-hidden rounded-2xl border border-[oklch(0.65_0.27_300/0.4)] bg-gradient-to-br from-[oklch(0.22_0.06_280/0.7)] to-[oklch(0.18_0.04_270/0.7)] p-5 sm:my-7 sm:p-8">
             <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[oklch(0.74_0.22_50/0.25)] blur-3xl" />
             <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[oklch(0.65_0.27_300/0.25)] blur-3xl" />
 
             <div className="relative flex flex-col items-center text-center">
-              <div className="flex flex-wrap items-center justify-center gap-2">
-                <span className="rounded-md bg-destructive/20 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-destructive sm:text-[11px]">
-                  -84% HOJE
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-md bg-gold/15 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-gold sm:text-[11px]">
-                  <Clock className="h-3 w-3" /> Oferta por tempo limitado
-                </span>
-              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-gold/15 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-gold sm:text-[11px]">
+                <Sparkles className="h-3 w-3" /> Acesso Liberado
+              </span>
 
               <div className="mt-5 flex items-baseline justify-center gap-2">
-                <span className="text-xs uppercase tracking-wider text-muted-foreground">De</span>
+                <span className="text-xs uppercase tracking-wider text-muted-foreground">Ferramenta avaliada em</span>
                 <span className="text-xl font-bold text-muted-foreground line-through decoration-destructive/70 decoration-2 sm:text-2xl" translate="no">
                   R$ 1.200,00
                 </span>
               </div>
 
               <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-gold">
-                Por apenas
+                Hoje, seu acesso é
               </p>
               <p
                 className="mt-1 font-extrabold leading-none text-gradient"
                 style={{ fontSize: "clamp(2.5rem, 10vw, 4rem)" }}
-                translate="no"
               >
-                R$ 197,00
+                100% Gratuito
               </p>
-              <p className="mt-2 text-sm text-muted-foreground" translate="no">
-                ou 12x de R$ 16,41 no cartão
-              </p>
-
-              <div className="mt-5 flex w-full max-w-sm items-start gap-3 rounded-xl border border-success/40 bg-success/10 px-4 py-3 text-left">
-                <Sparkles className="mt-0.5 h-5 w-5 flex-shrink-0 text-success" />
-                <div className="text-foreground">
-                  <p className="text-sm">
-                    + Mensalidade de{" "}
-                    <strong className="text-success" translate="no">R$ 97,00/mês</strong> a partir do 2º mês
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    (cobre manutenção do painel e otimização contínua da IA)
-                  </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    Cancele quando quiser, sem multa nem fidelidade.
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-4 text-xs font-semibold text-foreground/70">
-                💰 Você economiza{" "}
-                <span className="text-gradient" translate="no">R$ 997,90</span> hoje
+              <p className="mt-3 max-w-sm text-sm text-muted-foreground">
+                Sem mensalidade pra gente. Sem cartão. Você só define o orçamento que quiser usar quando for colocar seu próprio anúncio no ar.
               </p>
             </div>
           </div>
@@ -888,15 +907,11 @@ function Pricing() {
             </p>
             <p className="mt-3 text-sm font-semibold text-cta">Eu faço diferente.</p>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Por apenas <strong className="text-foreground" translate="no">R$ 197,80</strong>, você tem o poder de uma agência inteira resumida em uma tela de 3 cliques. Sem letras miúdas, sem contratos de fidelidade. Eu baixei o preço ao limite porque sei como é estar no início, querendo apenas uma renda previsível para respirar em paz.
+              Por isso decidi liberar o acesso completo de graça. Sem letras miúdas, sem contrato, sem mensalidade pra mim. Eu sei como é estar no início, querendo apenas uma renda previsível para respirar em paz — e não vou cobrar por isso.
             </p>
           </div>
 
-          <div className="mx-auto mt-6 w-full max-w-md">
-            <CheckoutButton variant="success" size="lg" label="pricing" pulse>
-              Quero Acessar o Robô e Começar Hoje
-            </CheckoutButton>
-          </div>
+          <AppAccessQuestion />
 
           <TrustBadges variant="pricing" />
         </motion.div>
@@ -908,10 +923,10 @@ function Pricing() {
 
 function TrustBadges({ variant = "hero" }: { variant?: "hero" | "pricing" }) {
   const items = [
-    { icon: Lock, label: "Pagamentos Seguros" },
+    { icon: Lock, label: "Acesso Verificado" },
     { icon: Headphones, label: "Suporte Rápido" },
     { icon: RefreshCw, label: "Cancelamento Fácil" },
-    { icon: Shield, label: "Compra Protegida" },
+    { icon: Shield, label: "100% Gratuito" },
   ];
   if (variant === "pricing") {
     return (
