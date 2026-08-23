@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "360710f5-d587-474a-993d-3a622de30441",
-  "project_id": "49dea27b-327a-4748-81f9-53433cbf71bc",
-  "url": "/__l5e/assets-v1/360710f5-d587-474a-993d-3a622de30441/vsl-final-comprimido.mp4",
-  "r2_key": "a/v1/49dea27b-327a-4748-81f9-53433cbf71bc/360710f5-d587-474a-993d-3a622de30441/vsl-final-comprimido.mp4",
-  "original_filename": "vsl-final-comprimido.mp4",
-  "size": 5728408,
   "content_type": "video/mp4",
-  "created_at": "2026-07-17T02:34:15Z"
+  "created_at": "2026-07-17T02:34:15Z",
+  "original_filename": "vsl-final-comprimido.mp4",
+  "project_id": "77595986-9a88-4344-b466-0d0a4bb4bed3",
+  "r2_key": "a/v1/77595986-9a88-4344-b466-0d0a4bb4bed3/360710f5-d587-474a-993d-3a622de30441/vsl-final-comprimido.mp4",
+  "size": 5728408,
+  "url": "/__l5e/assets-v1/360710f5-d587-474a-993d-3a622de30441/vsl-final-comprimido.mp4",
+  "version": 1
 }

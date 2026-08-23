@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "255f445e-d106-4c1c-887b-a98ea4de527b",
-  "project_id": "49dea27b-327a-4748-81f9-53433cbf71bc",
-  "url": "/__l5e/assets-v1/255f445e-d106-4c1c-887b-a98ea4de527b/vsl-final-comprimido.webm",
-  "r2_key": "a/v1/49dea27b-327a-4748-81f9-53433cbf71bc/255f445e-d106-4c1c-887b-a98ea4de527b/vsl-final-comprimido.webm",
-  "original_filename": "vsl-final-comprimido.webm",
-  "size": 5411453,
   "content_type": "video/webm",
-  "created_at": "2026-07-17T02:37:33Z"
+  "created_at": "2026-07-17T02:37:33Z",
+  "original_filename": "vsl-final-comprimido.webm",
+  "project_id": "77595986-9a88-4344-b466-0d0a4bb4bed3",
+  "r2_key": "a/v1/77595986-9a88-4344-b466-0d0a4bb4bed3/255f445e-d106-4c1c-887b-a98ea4de527b/vsl-final-comprimido.webm",
+  "size": 5411453,
+  "url": "/__l5e/assets-v1/255f445e-d106-4c1c-887b-a98ea4de527b/vsl-final-comprimido.webm",
+  "version": 1
 }
