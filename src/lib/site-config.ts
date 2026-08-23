@@ -6,11 +6,12 @@ export type SiteConfig = {
 };
 
 export const DEFAULT_CONFIG: SiteConfig = {
-  checkoutUrl: "https://pay.kiwify.com.br/ECJMIKj",
+  checkoutUrl: "https://robo-promoter.lovable.app",
   pixelId: "",
 };
 
-const KEY = "rv_site_config_v1";
+// v2: invalida links antigos salvos no navegador (ex.: checkout Kiwify)
+const KEY = "rv_site_config_v2";
 const EVENT = "rv-config-changed";
 
 export function getConfig(): SiteConfig {

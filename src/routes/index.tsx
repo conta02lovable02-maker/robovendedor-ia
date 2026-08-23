@@ -17,9 +17,7 @@ import { TestimonialsCarousel, type Testimonial } from "@/components/Testimonial
 import { PixelAndTracking } from "@/components/PixelScript";
 import { CountUp } from "@/components/CountUp";
 import { useQuizAnswers } from "@/lib/quiz-state";
-import { useSiteConfig } from "@/lib/site-config";
-import { track } from "@/lib/analytics";
-import roboMascote from "@/assets/robo-mascote.jpeg";
+import roboMascote from "@/assets/robo-mascote.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -483,7 +481,7 @@ function Bonuses() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div {...fadeUp} className="mx-auto max-w-2xl text-center">
           <h2 className="fluid-h2 font-extrabold">
-            Ao acessar o robô, <span className="text-gradient">você também desbloqueia:</span>
+            Ao acessar o robô, <span className="text-gradient">você também PODE desbloquear:</span>
           </h2>
         </motion.div>
         <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
@@ -498,7 +496,7 @@ function Bonuses() {
             >
               <div className="flex items-start justify-between gap-3">
                 <it.icon className="h-7 w-7 text-gold" />
-                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs font-bold text-gold ring-1 ring-white/10">Dentro do app</span>
+                <span className="rounded-full bg-white/[0.06] px-2.5 py-1 text-xs font-bold text-gold ring-1 ring-white/10" translate="no">Acesso Pro Max</span>
               </div>
               <h3 className="mt-4 font-bold text-foreground" translate="no">{it.t}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{it.d}</p>
@@ -513,8 +511,8 @@ function Bonuses() {
           <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[oklch(0.74_0.22_50/0.25)] blur-3xl" />
           <div className="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-[oklch(0.65_0.27_300/0.25)] blur-3xl" />
           <p className="relative text-sm text-muted-foreground sm:text-base">
-            <span translate="no">Robô de Vendas</span> + todos os benefícios acima já vêm{" "}
-            <span className="font-extrabold text-foreground">inclusos no seu acesso gratuito</span> — sem custo extra, direto dentro do app.
+            <span translate="no">Robô de Vendas</span> <span className="font-extrabold text-foreground">incluso no acesso gratuito</span> + todos os benefícios acima inclusos no{" "}
+            <span className="font-extrabold text-gold" translate="no">PRO MAX</span> — tudo direto dentro do app.
           </p>
         </motion.div>
       </div>
@@ -604,9 +602,9 @@ function BenefitsInner() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -6, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="glow-yellow relative rounded-2xl border-2 bg-white/[0.03] p-5 backdrop-blur-md sm:p-6"
+              className="glow-blue relative rounded-2xl border-2 bg-white/[0.03] p-5 backdrop-blur-md sm:p-6"
             >
-              <it.icon className="h-7 w-7 text-gold" />
+              <it.icon className="h-7 w-7 text-neon-cyan" />
               <h3 className="mt-4 font-bold text-foreground">
                 {it.translateNoTitle ? (
                   <>Otimização contínua por <span translate="no">IA</span></>
@@ -776,35 +774,19 @@ function Testimonials() {
 }
 
 function AppAccessQuestion() {
-  const { checkoutUrl } = useSiteConfig();
-  const options = [
-    { key: "5", label: "Uns 5, pra começar com calma" },
-    { key: "15", label: "Uns 15, já quero ver crescimento" },
-    { key: "30", label: "30 ou mais, quero ir com tudo" },
-  ];
-  const handleSelect = (key: string) => {
-    track({ type: "click", label: `access_question_${key}` });
-    window.open(checkoutUrl, "_blank", "noopener,noreferrer");
-  };
   return (
     <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-7">
       <p className="text-center text-xs font-semibold uppercase tracking-wider text-gold">
         Só uma coisa antes de continuar
       </p>
       <h3 className="mt-2 text-center text-lg font-extrabold text-foreground sm:text-xl">
-        Quantos clientes novos você gostaria de receber esse mês?
+        Ao acessar o app, você se compromete a usar o robô para vender produtos{" "}
+        <span className="text-gradient">seguros, éticos e de qualidade</span>?
       </h3>
-      <div className="mt-5 grid gap-3">
-        {options.map((o) => (
-          <button
-            key={o.key}
-            type="button"
-            onClick={() => handleSelect(o.key)}
-            className="w-full rounded-xl border-2 border-white/10 bg-white/[0.04] px-4 py-4 text-left text-base font-semibold text-foreground/90 transition-colors duration-150 hover:border-[oklch(0.65_0.27_300/0.6)] hover:bg-gradient-to-r hover:from-[oklch(0.65_0.27_300/0.12)] hover:to-[oklch(0.74_0.22_50/0.08)]"
-          >
-            {o.label}
-          </button>
-        ))}
+      <div className="mt-5">
+        <CheckoutButton variant="success" label="access_commitment_yes" pulse>
+          SIM, ACESSAR O APP AGORA
+        </CheckoutButton>
       </div>
     </div>
   );
@@ -816,10 +798,10 @@ function Pricing() {
     "Inteligência para Negócios Locais, Digitais e WhatsApp",
     "Suporte Premium Humanizado",
     "Otimização automática por IA 24/7",
-    "Treinamento em vídeo passo a passo",
-    "Seller School incluso",
-    "Suporte via WhatsApp incluso",
-    "Cancelamento fácil a qualquer momento",
+    "App sem cursos",
+    "Seller School para Pro Max",
+    "Suporte via WhatsApp para Pro Max",
+    "Ferramenta gratuita",
   ];
   return (
     <section id="preco" className="relative py-16 sm:py-24">
