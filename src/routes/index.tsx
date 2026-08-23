@@ -19,7 +19,7 @@ import { CountUp } from "@/components/CountUp";
 import { useQuizAnswers } from "@/lib/quiz-state";
 import { useSiteConfig } from "@/lib/site-config";
 import { track } from "@/lib/analytics";
-import roboMascote from "@/assets/robo-mascote.png";
+import roboMascote from "@/assets/robo-mascote.jpeg";
 
 export const Route = createFileRoute("/")({
   component: Index,
